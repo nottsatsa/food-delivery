@@ -1,4 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
+
+// const foodOrderItems
 
 const foodOrderSchema = new mongoose.Schema({
   totalPrice: { type: Number, required: true },
@@ -8,8 +10,10 @@ const foodOrderSchema = new mongoose.Schema({
     enum: ['Pending', 'Canceled', 'Delivered'],
     default: 'Pending',
   },
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  // category: { type: Schema.Types.ObjectId, ref: 'Category' },
   createdAt: { type: Date, default: Date.now },
   updatedtAt: { type: Date, default: Date.now },
 });
 
-export const foodOrderModel = mongoose.model('foodOrder', foodOrderSchema);
+export const FoodOrderModel = mongoose.model('foodOrder', foodOrderSchema);

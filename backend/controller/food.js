@@ -1,13 +1,14 @@
 import { FoodModel } from '../model/food.js';
 
 export const createFood = async (req, res) => {
-  const { foodName, price, ingredients, image } = req.body;
+  const { foodName, price, ingredients, image, category } = req.body;
   try {
     const food = await FoodModel.create({
       foodName: foodName,
       price: price,
       ingredients: ingredients,
       image: image,
+      category: category,
     });
     return res.status(200).send({ success: true, food: food }).end();
   } catch (error) {
@@ -23,11 +24,12 @@ export const createFood = async (req, res) => {
 };
 
 export const getFoodsByCategoryId = async (req, res) => {
-  const { categoryId } = req.body;
+  // const { categoryId } = req.body;
+  const { categoryId } = req.params;
   try {
     const foodByCategoryId = await FoodModel.find({
       category: categoryId,
-    }).populate('Category');
+    }).populate('category');
 
     return res
       .status(200)
