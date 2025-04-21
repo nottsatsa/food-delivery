@@ -1,11 +1,12 @@
 import { FoodOrderModel } from '../model/foodOrder.js';
 
 export const createFoodOrder = async (req, res) => {
-  const { totalPrice, status } = req.body;
+  const { userId, foods, totalPrice } = req.body;
   try {
     const foodOrder = await FoodOrderModel.create({
-      status: status,
       totalPrice: totalPrice,
+      user: userId,
+      foodOrderItems: foods,
     });
     return res.status(200).send({ success: true, foodOrder: foodOrder }).end();
   } catch (error) {
@@ -25,8 +26,8 @@ export const getOrderByUserId = async (req, res) => {
   try {
     const orderByUserId = await FoodOrderModel.find({
       user: userId,
-    }).populate('category');
-
+    }).populate('user');
+    // });
     return res
       .status(200)
       .send({ success: true, orderByUserId: orderByUserId })

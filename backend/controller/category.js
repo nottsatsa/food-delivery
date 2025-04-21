@@ -19,3 +19,22 @@ export const createCategory = async (req, res) => {
       .end();
   }
 };
+
+export const getCatergories = async (_, res) => {
+  try {
+    const categories = await CategoryModel.find();
+    return res
+      .status(200)
+      .send({ success: true, categories: categories })
+      .end();
+  } catch (error) {
+    console.error(error, 'error');
+    return res
+      .status(400)
+      .send({
+        success: false,
+        message: error,
+      })
+      .end();
+  }
+};

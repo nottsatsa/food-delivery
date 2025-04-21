@@ -19,7 +19,7 @@ import { turshiltRouter } from './router/tushilt.js';
 import cors from 'cors';
 import { userRouter } from './router/user.js';
 import { categoryRouter } from './router/category.js';
-import { AlertOctagon } from 'lucide-react';
+// import { AlertOctagon } from 'lucide-react';
 import { foodRouter } from './router/food.js';
 import { foodOrderRouter } from './router/foodOrder.js';
 

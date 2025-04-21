@@ -1,14 +1,44 @@
+'use client';
 import { BadgeStyle } from '@/components/badgeStyle';
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
-import { Main } from '@/components/main';
-import { ProductCard } from '@/components/productCard';
 import { ProductSection } from '@/components/productSection';
 import { Button } from '@/components/ui/button';
+import axios from 'axios';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { RxValue } from 'react-icons/rx';
 
 export default function Home() {
+  const [data, setData] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/users`
+      );
+      console.log(response, 'response');
+      setData(response.data);
+      setUsers(response.data.users);
+
+      const categoriesRes = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/categories`
+      );
+      setCategories(categoriesRes.data.categories);
+    } catch (error) {
+      console.log('err', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+  console.log(data, 'data');
+  console.log(users, 'response.data.users');
+  console.log(categories, 'categories');
+
   return (
     <div>
       <Header />
@@ -25,7 +55,10 @@ export default function Home() {
             <ChevronLeft className="size-4" />
           </Button>
           <div className="flex items-center gap-2 w-[86vw] overflow-hidden">
-            <BadgeStyle badgeName={'Appetizers'} />
+            {categories.map((value: any, index: any) => {
+              return <BadgeStyle key={index} badgeName={`${value.name}`} />;
+            })}
+            {/* <BadgeStyle badgeName={'Appetizers'} />
             <BadgeStyle badgeName={'Salads'} />
             <BadgeStyle badgeName={'Pizzas'} />
             <BadgeStyle badgeName={'Lunch favorites'} />
@@ -34,7 +67,7 @@ export default function Home() {
             <BadgeStyle badgeName={'Side dish '} />
             <BadgeStyle badgeName={'Brunch'} />
             <BadgeStyle badgeName={'Desserts'} />
-            <BadgeStyle badgeName={'Beverages'} />
+            <BadgeStyle badgeName={'Beverages'} /> */}
           </div>
           <Button
             variant="ghost"
@@ -52,3 +85,42 @@ export default function Home() {
     </div>
   );
 }
+
+//////////////////////////
+
+// 'use client';
+// import axios from 'axios';
+// import { useEffect, useState } from 'react';
+
+// export default function Home() {
+//   const [data, setData] = useState([]);
+//   const [users, setUsers] = useState([]);
+//   const [categories, setCategories] = useState([]);
+
+//   const fetchUsers = async () => {
+//     try {
+//       const response = await axios.get(
+//         `${process.env.NEXT_PUBLIC_BACKEND_URI}/users`
+//       );
+//       console.log(response, 'response');
+//       setData(response.data);
+//       setUsers(response.data.users);
+
+//       const categoriesRes = await axios.get(
+//         `${process.env.NEXT_PUBLIC_BACKEND_URI}/categories`
+//       );
+//       setCategories(categoriesRes.data.categories);
+//     } catch (error) {
+//       console.log('err', error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchUsers();
+//   }, []);
+//   console.log(data, 'data');
+//   console.log(users, 'response.data.users');
+//   console.log(categories, 'categories');
+
+//   return <div>hello</div>;
+// }
