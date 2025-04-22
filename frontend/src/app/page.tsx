@@ -2,6 +2,7 @@
 import { BadgeStyle } from '@/components/badgeStyle';
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
+import { ProductCard } from '@/components/productCard';
 import { ProductSection } from '@/components/productSection';
 import { Button } from '@/components/ui/button';
 import axios from 'axios';
@@ -13,7 +14,6 @@ export default function Home() {
   const [data, setData] = useState([]);
   const [users, setUsers] = useState([]);
   const [categories, setCategories] = useState([]);
-
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
@@ -79,7 +79,15 @@ export default function Home() {
       </div>
       {/* menu container */}
       <div className="flex flex-col items-start gap-13.5 px-22">
-        <ProductSection category={'Appetizers'} />
+        {categories.map((value: any, index: number) => {
+          return (
+            <ProductSection
+              key={index}
+              categoryId={value._id}
+              categoryName={value.name}
+            />
+          );
+        })}
       </div>
       <Footer />
     </div>
