@@ -22,6 +22,7 @@ import { categoryRouter } from './router/category.js';
 // import { AlertOctagon } from 'lucide-react';
 import { foodRouter } from './router/food.js';
 import { foodOrderRouter } from './router/foodOrder.js';
+import { authRouter } from './router/auth.js';
 
 // const port = 8000;
 const port = process.env.PORT;
@@ -39,6 +40,7 @@ app.use(userRouter);
 app.use(categoryRouter);
 app.use(foodRouter);
 app.use(foodOrderRouter);
+app.use(authRouter);
 
 app.listen(port, () => {
   console.log(`server running at http://localhost:${port}`);

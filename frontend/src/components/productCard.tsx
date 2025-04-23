@@ -1,3 +1,12 @@
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+
 interface productCardTypes {
   foodName: string;
   foodPrice: string;
@@ -16,11 +25,11 @@ export const ProductCard = ({
       {/* <div
         className={`w-[365px] h-[210px] rounded-xl bg-cover bg-center bg-[url(${imgLink})]`}
       ></div> */}
-      <img className="w-[365px] h-[210px] rounded-xl" src={`${imgLink}`} />
+      <img className="w-[365px] h-[210px]  rounded-xl" src={`${imgLink}`} />
       <div className="flex flex-col items-start gap-2">
-        <div className="flex justify-center items-center gap-2.5">
+        <div className="flex flex-row justify-between">
           <h3 className="text-2xl font-semibold text-[#EF4444]">{foodName}</h3>
-          <h4 className="text-lg font-semibold text-[#09090B]">{foodPrice}</h4>
+          <h4 className="text-lg font-semibold text-[#09090B]">{`$${foodPrice}`}</h4>
         </div>
         <h3 className="text-sm font-normal text-[#09090B] w-[365px]">
           {ingredients}

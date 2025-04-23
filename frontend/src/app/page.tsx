@@ -16,25 +16,26 @@ export default function Home() {
   const [categories, setCategories] = useState([]);
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URI}/users`
-      );
-      console.log(response, 'response');
-      setData(response.data);
-      setUsers(response.data.users);
+      // const response = await axios.get(
+      //   `${process.env.NEXT_PUBLIC_BACKEND_URI}/users`
+      // );
+      // console.log(response, 'response bnuuuu');
+      // setData(response.data);
+      // setUsers(response.data.users);
 
       const categoriesRes = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_URI}/categories`
       );
       setCategories(categoriesRes.data.categories);
     } catch (error) {
-      console.log('err', error);
+      console.log('err ene yumshig l bnda', error);
     }
   };
 
   useEffect(() => {
     fetchUsers();
   }, []);
+
   console.log(data, 'data');
   console.log(users, 'response.data.users');
   console.log(categories, 'categories');
@@ -52,7 +53,7 @@ export default function Home() {
             variant="ghost"
             className="flex items-center justify-center gap-2 size-10"
           >
-            <ChevronLeft className="size-4" />
+            <ChevronLeft className="size-4 text-[#fff]" />
           </Button>
           <div className="flex items-center gap-2 w-[86vw] overflow-hidden">
             {categories.map((value: any, index: any) => {
@@ -73,7 +74,7 @@ export default function Home() {
             variant="ghost"
             className="flex items-center justify-center gap-2 size-10"
           >
-            <ChevronRight className="size-4" />
+            <ChevronRight className="size-4 text-[#fff]" />
           </Button>
         </div>
       </div>
@@ -93,42 +94,3 @@ export default function Home() {
     </div>
   );
 }
-
-//////////////////////////
-
-// 'use client';
-// import axios from 'axios';
-// import { useEffect, useState } from 'react';
-
-// export default function Home() {
-//   const [data, setData] = useState([]);
-//   const [users, setUsers] = useState([]);
-//   const [categories, setCategories] = useState([]);
-
-//   const fetchUsers = async () => {
-//     try {
-//       const response = await axios.get(
-//         `${process.env.NEXT_PUBLIC_BACKEND_URI}/users`
-//       );
-//       console.log(response, 'response');
-//       setData(response.data);
-//       setUsers(response.data.users);
-
-//       const categoriesRes = await axios.get(
-//         `${process.env.NEXT_PUBLIC_BACKEND_URI}/categories`
-//       );
-//       setCategories(categoriesRes.data.categories);
-//     } catch (error) {
-//       console.log('err', error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchUsers();
-//   }, []);
-//   console.log(data, 'data');
-//   console.log(users, 'response.data.users');
-//   console.log(categories, 'categories');
-
-//   return <div>hello</div>;
-// }
