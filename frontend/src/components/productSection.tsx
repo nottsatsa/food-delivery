@@ -41,26 +41,13 @@ export const ProductSection = ({ categoryId, categoryName }: any) => {
         {/* xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 */}
         {foodByCategoryId.map((value: any, index: any) => {
           return (
-            <Dialog>
-              <DialogTrigger>
-                <ProductCard
-                  key={index}
-                  foodName={value.foodName}
-                  foodPrice={value.price}
-                  ingredients={value.ingredients}
-                  imgLink={value.image}
-                />
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                  <DialogTitle>Edit profile</DialogTitle>
-                  <DialogDescription>
-                    Make changes to your profile here. Click save when you're
-                    done.
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
+            <ProductCard
+              key={index}
+              foodName={value.foodName}
+              foodPrice={value.price}
+              ingredients={value.ingredients}
+              imgLink={value.image}
+            />
           );
         })}
       </div>

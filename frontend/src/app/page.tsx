@@ -41,25 +41,26 @@ export default function Home() {
   console.log(categories, 'categories');
 
   return (
-    <div>
+    <div className="bg-[#404040]">
       <Header />
       <img src="https://s3-alpha-sig.figma.com/img/8984/6312/a2a7c22f5fe9122b2bd6276cdd549c3e?Expires=1745798400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ZT8ix8PnvS5PNCzC9Xqfe8g8T2DgO7M5SL~Xr0wI2LjCQqEDVh0ErkR4plCjukQZu4NWzuG3uAlO3IiW~xj2TXJzkTt1hAsTXfb9fM~kZzBq1ovNXX-oiElqqZiRHq2iIuq3o1xOTwmqXwtHN-rGlsh0xYvc6POiPqbmE2FFeRw0zMovo8AeroEmkEa-HRDjTUURjnZtd-cbGpkL-fnOqf1pNGbT2Hk2iepnd9Qfu~uFj7-0PiEL-bgc7yLhrRHOgNH0UFIwABTkhSqyQrPmB9nrvjtByLDhc725MYKkRofHdYQAIhYPwIwuB4oCQwHbbZ8VAw2hyJl5AXZbdjAJiA__" />
-      <div className="flex w-full py-8 px-12 flex-col items-start gap-9">
-        <div className="flex px-10 justify-center items-center gap-2.5 ">
-          <h2 className="text-3xl font-semibold text-[#fff]">Categories</h2>
-        </div>
-        <div className="flex items-center gap-2 ">
-          <Button
-            variant="ghost"
-            className="flex items-center justify-center gap-2 size-10"
-          >
-            <ChevronLeft className="size-4 text-[#fff]" />
-          </Button>
-          <div className="flex items-center gap-2 w-[86vw] overflow-hidden">
-            {categories.map((value: any, index: any) => {
-              return <BadgeStyle key={index} badgeName={`${value.name}`} />;
-            })}
-            {/* <BadgeStyle badgeName={'Appetizers'} />
+      <div className="max-w-[1440px]">
+        <div className="flex py-8 px-12 flex-col items-start gap-9">
+          <div className="flex px-10 justify-center items-center gap-2.5 ">
+            <h2 className="text-3xl font-semibold text-[#fff]">Categories</h2>
+          </div>
+          <div className="flex items-center gap-2 ">
+            <Button
+              variant="ghost"
+              className="flex items-center justify-center gap-2 size-10"
+            >
+              <ChevronLeft className="size-4 text-[#fff]" />
+            </Button>
+            <div className="flex items-center gap-2 w-[86vw] overflow-hidden">
+              {categories.map((value: any, index: any) => {
+                return <BadgeStyle key={index} badgeName={`${value.name}`} />;
+              })}
+              {/* <BadgeStyle badgeName={'Appetizers'} />
             <BadgeStyle badgeName={'Salads'} />
             <BadgeStyle badgeName={'Pizzas'} />
             <BadgeStyle badgeName={'Lunch favorites'} />
@@ -69,26 +70,28 @@ export default function Home() {
             <BadgeStyle badgeName={'Brunch'} />
             <BadgeStyle badgeName={'Desserts'} />
             <BadgeStyle badgeName={'Beverages'} /> */}
+            </div>
+            <Button
+              variant="ghost"
+              className="flex items-center justify-center gap-2 size-10"
+            >
+              <ChevronRight className="size-4 text-[#fff]" />
+            </Button>
           </div>
-          <Button
-            variant="ghost"
-            className="flex items-center justify-center gap-2 size-10"
-          >
-            <ChevronRight className="size-4 text-[#fff]" />
-          </Button>
         </div>
-      </div>
-      {/* menu container */}
-      <div className="flex flex-col items-start gap-13.5 px-22">
-        {categories.map((value: any, index: number) => {
-          return (
-            <ProductSection
-              key={index}
-              categoryId={value._id}
-              categoryName={value.name}
-            />
-          );
-        })}
+        {/* menu container */}
+
+        <div className="flex max-w-[1440px] flex-col items-start gap-13.5 pl-22">
+          {categories.map((value: any, index: number) => {
+            return (
+              <ProductSection
+                key={index}
+                categoryId={value._id}
+                categoryName={value.name}
+              />
+            );
+          })}
+        </div>
       </div>
       <Footer />
     </div>

@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-[#404040]">
+      <body>
         {/* <div className="flex flex-between w-[100vw] h-[100vh] p-5 pl-20">
           <div className="h-full pt-[30vh]">
             <div className="w-104">login</div>
