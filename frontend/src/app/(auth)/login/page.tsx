@@ -1,8 +1,33 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import axios from 'axios';
+import { Eye } from 'lucide-react';
+import React, { useRef, useState } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 
 export default function Home() {
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const handleOnClick = async () => {
+    console.log('duudadgjiin');
+
+    const response = await axios.post('http://localhost:8000/login', {
+      email: emailRef.current?.value,
+      password: passwordRef.current?.value,
+    });
+    localStorage.setItem('token', response.data.token);
+    console.log(response, 'response');
+  };
+
+  // axios.get('http://localhost:8000/food');
+  let [passVisible, setPassVisible] = useState(false);
+  const passVisibleOnClick = () => {
+    setPassVisible((prev) => !prev);
+    console.log(passVisible, 'toggle success');
+  };
+
   return (
     <div className="flex flex-col gap-6">
       <Button className="size-9 px-4 py-2" variant="outline">
@@ -15,8 +40,22 @@ export default function Home() {
         </h6>
       </header>
       <div className="flex flex-col gap-4">
-        <Input type="email" placeholder="Enter your email address" />
-        <Input type="text" placeholder="Password" />
+        <Input
+          ref={emailRef}
+          type="email"
+          placeholder="Enter your email address"
+        />
+        <div className="flex">
+          <Input
+            ref={passwordRef}
+            type={passVisible ? 'text' : 'password'}
+            placeholder="Password"
+          />
+          <Button variant="outline" size="icon" onClick={passVisibleOnClick}>
+            <Eye size={16} strokeWidth={1} />
+          </Button>
+        </div>
+
         <a
           href="http://localhost:3000/forgot-pass"
           className="text-sm font-normal underline text-[#18181B]"
@@ -25,7 +64,11 @@ export default function Home() {
         </a>
       </div>
 
-      <Button className="bg-[#d1d1d1]" variant="secondary">
+      <Button
+        className="bg-[#d1d1d1]"
+        variant="secondary"
+        onClick={handleOnClick}
+      >
         Let's Go
       </Button>
       <footer className="flex justify-center gap-1">

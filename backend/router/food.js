@@ -5,3 +5,4 @@ export const foodRouter = express.Router();
 foodRouter
   .post('/food', createFood)
   .get('/foodsByCagtegoryId/:categoryId', getFoodsByCategoryId);
+// .get('/foodsByCagtegoryId/:categoryId', verifyToken, getFoodsByCategoryId);
