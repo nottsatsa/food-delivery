@@ -40,6 +40,19 @@ export default function Home() {
   console.log(users, 'response.data.users');
   console.log(categories, 'categories');
 
+  //doosho
+  const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState('All');
+  const filteredTasks = tasks.filter((value) => {
+    if (filter === 'Active') {
+      return !value.isChecked;
+    } else if (filter === 'Completed') {
+      return value.isChecked;
+    } else {
+      return true;
+    }
+  });
+
   return (
     <div className="bg-[#404040]">
       <Header />
@@ -60,7 +73,11 @@ export default function Home() {
             <div className="flex items-center gap-2 w-[86vw] overflow-hidden">
               {categories.map((value: any, index: any) => {
                 return (
-                  <Button variant="ghost" className="w-fit h-fit">
+                  <Button
+                    variant="ghost"
+                    className="w-fit h-fit"
+                    onClick={() => setFilter(`${value.name}`)}
+                  >
                     <BadgeStyle key={index} badgeName={`${value.name}`} />
                   </Button>
                 );
