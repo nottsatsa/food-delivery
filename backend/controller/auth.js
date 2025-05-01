@@ -2,6 +2,9 @@ import { UserModel } from '../model/user.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { configDotenv } from 'dotenv';
+import nodemailer from 'nodemailer';
+import { response, text } from 'express';
+import { sendMail } from '../utils/sendMailer.js';
 
 configDotenv();
 const secret_key = process.env.SECRET_KEY;
@@ -38,5 +41,26 @@ export const login = async (req, res) => {
     //     message: error,
     //   })
     //   .end();
+  }
+};
+
+// const transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   host: 'smtp.gmail.com',
+//   secure: true,
+//   port: 465,
+//   auth: {
+//     user: 'tsatsralsainbolor@gmail.com',
+//     pass: 'iyklyplzkumjpmgv',
+//   },
+// });
+
+export const sendMailer = async (req, res) => {
+  const { email, subject, text } = req.body;
+  try {
+    const response = await sendMail(email, subject, text);
+    res.status(200).send({ success: true, data: response });
+  } catch (error) {
+    res.status(500).send({ success: false, error: error });
   }
 };
