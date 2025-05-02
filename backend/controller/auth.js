@@ -24,7 +24,7 @@ export const login = async (req, res) => {
       }
 
       console.log(user, 'user');
-      const token = jwt.sign({ ...user }, secret_key, { expiresIn: 3600 });
+      const token = jwt.sign({ ...user }, secret_key, { expiresIn: 3600 * 24 });
 
       return res.status(200).send({ success: true, token });
     } else {

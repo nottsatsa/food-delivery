@@ -30,6 +30,17 @@ export default function Home() {
     } catch (error) {
       console.log('err ene yumshig l bnda', error);
     }
+
+    const token = localStorage.getItem('token');
+    const response = await axios.get(
+      `http://localhost:8000/foodsByCagtegoryId`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response);
   };
 
   useEffect(() => {
@@ -39,19 +50,6 @@ export default function Home() {
   console.log(data, 'data');
   console.log(users, 'response.data.users');
   console.log(categories, 'categories');
-
-  //doosho
-  const [tasks, setTasks] = useState([]);
-  const [filter, setFilter] = useState('All');
-  const filteredTasks = tasks.filter((value) => {
-    if (filter === 'Active') {
-      return !value.isChecked;
-    } else if (filter === 'Completed') {
-      return value.isChecked;
-    } else {
-      return true;
-    }
-  });
 
   return (
     <div className="bg-[#404040]">
@@ -76,7 +74,7 @@ export default function Home() {
                   <Button
                     variant="ghost"
                     className="w-fit h-fit"
-                    onClick={() => setFilter(`${value.name}`)}
+                    // onClick={() => setFilter(`${value.name}`)}
                   >
                     <BadgeStyle key={index} badgeName={`${value.name}`} />
                   </Button>

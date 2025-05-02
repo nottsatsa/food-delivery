@@ -26,8 +26,8 @@ export const createFood = async (req, res) => {
 };
 
 export const getFoodsByCategoryId = async (req, res) => {
-  // const { categoryId } = req.body;
-  const { categoryId } = req.params;
+  const { categoryId } = req.body;
+  // const { categoryId } = req.params;
   try {
     const foodByCategoryId = await FoodModel.find({
       category: categoryId,
