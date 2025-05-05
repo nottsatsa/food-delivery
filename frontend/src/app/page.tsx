@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import axios from 'axios';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { RxValue } from 'react-icons/rx';
 
 export default function Home() {
   const [data, setData] = useState([]);

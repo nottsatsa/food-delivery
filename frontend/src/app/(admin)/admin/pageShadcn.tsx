@@ -1,6 +1,3 @@
-import { LayoutDashboard, Settings, Truck } from 'lucide-react';
-import { OrderInfo } from './_components/orderInfo';
-
 import { Payment, columns } from './columns';
 import { DataTable } from './data-table';
 

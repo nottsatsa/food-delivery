@@ -13,10 +13,13 @@ export default function Home() {
   const handleOnClick = async () => {
     console.log('duudadgjiin');
 
-    const response = await axios.post('http://localhost:8000/login', {
-      email: emailRef.current?.value,
-      password: passwordRef.current?.value,
-    });
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_BACKEND_URI}/login`,
+      {
+        email: emailRef.current?.value,
+        password: passwordRef.current?.value,
+      }
+    );
     localStorage.setItem('token', response.data.token);
     console.log(response, 'response');
   };
