@@ -1,15 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ProductCard } from './productCard';
 import axios from 'axios';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from './ui/dialog';
-import { Button } from './ui/button';
 
 export const ProductSection = ({ categoryId, categoryName }: any) => {
   const [foodByCategoryId, setFoodByCategoryId] = useState([]);
