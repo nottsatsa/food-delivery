@@ -1,4 +1,4 @@
-export const Main = ({}) => {
+export const Main = () => {
   return (
     <div className="flex flex-between w-[100vw] h-[100vh] p-5 pl-20">
       <div className="h-full pt-[30vh]">
