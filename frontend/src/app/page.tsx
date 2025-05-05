@@ -32,14 +32,11 @@ export default function Home() {
     }
 
     const token = localStorage.getItem('token');
-    const response = await axios.get(
-      `http://localhost:8000/foodsByCagtegoryId`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     console.log(response);
   };
 

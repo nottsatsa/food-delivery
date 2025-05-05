@@ -28,7 +28,10 @@ export const FoodDetailOne = ({
     };
 
     try {
-      const response = await axios.post('http://localhost:8000/order', data);
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/order`,
+        data
+      );
       console.log('Амжилттай:', response.data);
     } catch (error) {
       console.error('Алдаа:', error);
